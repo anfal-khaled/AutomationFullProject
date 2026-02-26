@@ -47,7 +47,7 @@ public class mytest extends TestData {
 		WebElement PasswordInput = driver.findElement(By.id("AccountFrm_password"));
 		WebElement ConfirmPasswordInput = driver.findElement(By.id("AccountFrm_confirm"));
 		WebElement ConditionsAndTermsCheckbox = driver.findElement(By.id("AccountFrm_agree"));
-		WebElement CountinueButton = driver.findElement(By.cssSelector(".btn.btn-orange.pull-right.lock-on-click"));   //لما يكون نقاط بتكون cssselector مو class
+		WebElement CountinueButton = driver.findElement(By.cssSelector(".btn.btn-orange.pull-right.lock-on-click"));  
 		
 		//     Actions
 		
@@ -56,9 +56,9 @@ public class mytest extends TestData {
 		EmailInput.sendKeys(TheEmail);
 		AdressInput.sendKeys("Salt");
 		Select CountrySelect = new Select(CountryDropDown);
-		//CountrySelect.selectByIndex(randdomCountryIndex);  //بدات من 1 لانها dropdown -->وانديكس 0 فيها هو : please select
-		// CountrySelect.selectByVisibleText("Jordan");               //بختار عن طريق text
-		CountrySelect.selectByValue("108");                           //بختار عن طريق valu
+		//CountrySelect.selectByIndex(randdomCountryIndex);
+		// CountrySelect.selectByVisibleText("Jordan");               
+		CountrySelect.selectByValue("108");                           
 		Thread.sleep(3000);
 		int randomState = rand.nextInt(StateDropDown.findElements(By.tagName("option")).size());
 		Select SelectforStateDropDown = new Select(StateDropDown);
@@ -74,8 +74,8 @@ public class mytest extends TestData {
 		//         Assertion
 
 		Assert.assertEquals(driver.getCurrentUrl().contains("success"), true);  
-		Assert.assertEquals(driver.getPageSource().contains("Congratulations"), true);  //هل يوجد في الصفحه كلمه congrulations ---> pass
-        // Assert.assertEquals(driver.getPageSource().contains("Congratulations11"), true);           //failure ---> expected [true] but found [false]   
+		Assert.assertEquals(driver.getPageSource().contains("Congratulations"), true);  
+        // Assert.assertEquals(driver.getPageSource().contains("Congratulations11"), true);           // 
         WebElement WelcomeMessageArea = driver.findElement(By.id("customernav"));              
 		Assert.assertEquals(WelcomeMessageArea.getText().contains(randomFirstName), true);
 		
@@ -120,7 +120,7 @@ public class mytest extends TestData {
 @Test (priority =4 )
 public void AddRandomItem() {
 	driver.navigate().to("https://automationteststore.com/");
-	//driver.findElements(By.className("prdocutname")).get(0).click();    // بس النصر الاول ومن دون add to cart 
+	//driver.findElements(By.className("prdocutname")).get(0).click();    
 	int totalItems =driver.findElements(By.className("prdocutname")).size();
 	int randomItems = rand.nextInt(totalItems);
 	
@@ -144,7 +144,7 @@ public void CheckOutProcess() {
 	ConfirmOrderButton.click();
 	
 	String ActualValue = driver.findElement(By.className("heading1")).getText();
-	//String ExpectedValue = "YOUR ORDER HAS BEEN PROCESSED!";  //failure : لانه النص capital المفروض 
+	//String ExpectedValue = "YOUR ORDER HAS BEEN PROCESSED!";  
 	String ExpectedValue = "Your Order Has Been Processed!";
 	Assert.assertEquals(ActualValue,ExpectedValue);
 	
